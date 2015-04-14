@@ -113,10 +113,10 @@ oppia.directive('ruleEditor', ['$log', function($log) {
     templateUrl: 'inline/rule_editor',
     controller: [
       '$scope', '$rootScope', '$modal', '$timeout', 'editorContextService', 'routerService',
-      'validatorsService', 'rulesService', 'explorationStatesService', 'stateInteractionIdService',
+      'validatorsService', 'rulesService', 'explorationStatesService', 'stateInteractionIdService', 'stateCustomizationArgsService',
       function(
           $scope, $rootScope, $modal, $timeout, editorContextService, routerService,
-          validatorsService, rulesService, explorationStatesService, stateInteractionIdService) {
+          validatorsService, rulesService, explorationStatesService, stateInteractionIdService, stateCustomizationArgsService) {
         $scope.editRuleForm = {};
 
         $scope.answerChoices = rulesService.getAnswerChoices();
@@ -128,6 +128,7 @@ oppia.directive('ruleEditor', ['$log', function($log) {
 
         $scope.ruleEditorIsOpen = false;
         $scope.openRuleEditor = function() {
+          rulesService.print();
           if ($scope.isEditable) {
             $scope.ruleDefinitionMemento = angular.copy($scope.rule.definition);
             $scope.ruleFeedbackMemento = angular.copy($scope.rule.feedback);
@@ -359,9 +360,9 @@ oppia.directive('ruleDescriptionEditor', ['$log', function($log) {
     templateUrl: 'rules/ruleDescriptionEditor',
     controller: [
         '$scope', 'editorContextService', 'explorationStatesService', 'routerService', 'validatorsService',
-        'rulesService', 'stateInteractionIdService', 'INTERACTION_SPECS',
+        'rulesService', 'stateInteractionIdService', 'INTERACTION_SPECS', 'stateCustomizationArgsService',
         function($scope, editorContextService, explorationStatesService, routerService, validatorsService,
-                 rulesService, stateInteractionIdService, INTERACTION_SPECS) {
+                 rulesService, stateInteractionIdService, INTERACTION_SPECS, stateCustomizationArgsService) {
 
       $scope.currentInteractionId = stateInteractionIdService.savedMemento;
 
@@ -476,6 +477,11 @@ oppia.directive('ruleDescriptionEditor', ['$log', function($log) {
         }
       };
 
+      $scope.getCustomRuleTemplate = function(s) {
+        var specs = INTERACTION_SPECS[stateInteractionIdService.savedMemento];
+        return specs.custom_rule_templates[s];
+      }
+
       $scope.init = function() {
         // Select a default rule name, if one isn't already selected.
         if ($scope.currentRuleDefinition.name === null && $scope.currentRuleDefinition.rule_type !== 'default') {
@@ -493,5 +499,28 @@ oppia.directive('ruleDescriptionEditor', ['$log', function($log) {
 
       $scope.init();
     }]
+  };
+}]);
+
+oppia.directive('customRuleTemplate', ['$filter', 'INTERACTION_SPECS', 'stateInteractionIdService', 'stateCustomizationArgsService', 'oppiaHtmlEscaper', function($filter, INTERACTION_SPECS, stateInteractionIdService, stateCustomizationArgsService, oppiaHtmlEscaper) {
+  return {
+    restrict: 'E',
+    controller: ['$scope', '$element', '$attrs', '$compile', function($scope, $element, $attrs, $compile) {
+      var specs = INTERACTION_SPECS[stateInteractionIdService.savedMemento];
+      var ruleName = $scope.currentRuleDefinition.name;
+      var customDirectiveName = specs.custom_rule_templates[ruleName];
+      var hyphenatedElement = $filter('camelCaseToHyphens')(customDirectiveName);
+      var tag = '<' + hyphenatedElement;
+      var customizationArgs = stateCustomizationArgsService.savedMemento;
+      for (var argName in customizationArgs) {
+        var hyphenatedArgName = $filter('camelCaseToHyphens')(argName);
+        var argValue = customizationArgs[argName].value
+        var escapedArgValue = oppiaHtmlEscaper.objToEscapedJson(argValue);
+        tag += ' ' + hyphenatedArgName + '-with-value="' + escapedArgValue + '"';
+      }
+      tag += ' inputs="currentRuleDefinition.inputs"';
+      tag += '></' + hyphenatedElement + '>';
+      $element.append($compile(tag)($scope));
+    }],
   };
 }]);

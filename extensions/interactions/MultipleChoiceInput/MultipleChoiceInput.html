@@ -45,3 +45,9 @@
 <script type="text/ng-template" id="response/MultipleChoiceInput">
   <span angular-html-bind="response"></span>
 </script>
+
+<script type="text/ng-template" id="rules/MultipleChoiceInput/Equals">
+  <select ng-model="localValue.value" ng-options="$index as choice for ($index,choice) in choices" ng-change="log()">
+    <option></option>
+  </select>
+</script>

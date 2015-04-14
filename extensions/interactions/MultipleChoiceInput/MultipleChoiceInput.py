@@ -51,3 +51,7 @@ class MultipleChoiceInput(base.BaseInteraction):
         },
         'default_value': ['Sample multiple-choice answer'],
     }]
+
+    _custom_rule_templates = {
+        'Equals': 'oppiaRulesMultipleChoiceInputEquals'
+    }

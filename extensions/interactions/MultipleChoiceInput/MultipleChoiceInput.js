@@ -53,3 +53,30 @@ oppia.directive('oppiaResponseMultipleChoiceInput', [
     };
   }
 ]);
+
+oppia.directive('oppiaRulesMultipleChoiceInputEquals', [
+  'oppiaHtmlEscaper', function(oppiaHtmlEscaper) {
+    return {
+      restrict: 'E',
+      scope: {
+        inputs: '='
+      },
+      templateUrl: 'rules/MultipleChoiceInput/Equals',
+      controller: ['$scope', '$attrs', function($scope, $attrs) {
+        $scope.choices = oppiaHtmlEscaper.escapedJsonToObj($attrs.choicesWithValue);
+        $scope.localValue = {value: '0'};
+        $scope.$watch('inputs.x', function(newValue, oldValue) {
+          if (newValue) {
+            $scope.localValue.value = newValue.toString();
+          }
+        });
+        $scope.$watch('localValue.value', function(newValue, oldValue) {
+          if ($scope.inputs) {
+            $scope.inputs.x = parseInt(newValue);
+          }
+        });
+        
+      }]
+    };
+  }
+]);

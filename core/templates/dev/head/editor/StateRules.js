@@ -145,6 +145,10 @@ oppia.factory('rulesService', [
         callback();
       }
     },
+    print: function() {
+      console.log("SPECS:",INTERACTION_SPECS);
+      return;
+    },
     getActiveRuleIndex: function() {
       return _activeRuleIndex;
     },

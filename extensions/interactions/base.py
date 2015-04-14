@@ -120,6 +120,9 @@ class BaseInteraction(object):
     # Customization arg specifications for the component, including their
     # descriptions, schemas and default values. Overridden in subclasses.
     _customization_arg_specs = []
+    # Custom rule templates that override the default description for a 
+    # rule just for this interaction
+    _custom_rule_templates = {}
 
     @property
     def id(self):
@@ -130,6 +133,10 @@ class BaseInteraction(object):
         return [
             CustomizationArgSpec(**cas)
             for cas in self._customization_arg_specs]
+
+    @property
+    def custom_rule_templates(self):
+        return self._custom_rule_templates 
 
     @property
     def handlers(self):
@@ -210,6 +217,7 @@ class BaseInteraction(object):
                 'default_value': ca_spec.default_value,
                 'schema': ca_spec.schema,
             } for ca_spec in self.customization_arg_specs],
+            'custom_rule_templates': self.custom_rule_templates 
         }
 
         # Add information about the handlers.

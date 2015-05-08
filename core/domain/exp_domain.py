@@ -1566,7 +1566,7 @@ class Exploration(object):
             state = exploration.states[state_name]
 
             state.content = [
-                Content(item['type'], html_cleaner.clean(item['value']))
+                Content(item['type'], item['value'])
                 for item in sdict['content']
             ]
 

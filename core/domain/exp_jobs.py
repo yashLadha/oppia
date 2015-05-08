@@ -21,6 +21,7 @@ __author__ = 'Frederik Creemers'
 import copy
 
 from core import jobs
+from core.domain import html_cleaner
 from core.platform import models
 (base_models, exp_models,) = models.Registry.import_models([
     models.NAMES.base_model, models.NAMES.exploration])
@@ -88,6 +89,30 @@ class ExplorationValidityJobManager(jobs.BaseMapReduceJobManager):
             exploration.validate(strict=False)
         except utils.ValidationError as e:
             yield (item.id, unicode(e).encode('utf-8'))
+
+    @staticmethod
+    def reduce(key, values):
+        yield (key, values)
+
+
+class ExplorationContentAuditJobManager(jobs.BaseMapReduceJobManager):
+    """Job that checks validity of HTML content of explorations."""
+
+    @classmethod
+    def entity_classes_to_map_over(cls):
+        return [exp_models.ExplorationModel]
+
+    @staticmethod
+    def map(item):
+        from core.domain import exp_services
+        exploration = exp_services.get_exploration_from_model(item)
+        for state_name, state in exploration.states.iteritems():
+            old_value = state.content[0].value
+            new_value = html_cleaner.clean(old_value)
+            if old_value != new_value:
+                yield (
+                    item.id,
+                    unicode('%s %s %s' % (state_name, old_value, new_value)))
 
     @staticmethod
     def reduce(key, values):

@@ -27,7 +27,7 @@ describe('Stopwatch service', function() {
 
     beforeEach(inject(function($injector) {
       stopwatchProviderService = $injector.get('stopwatchProviderService');
-      spyOn($injector.get('$log'), 'error').andCallFake(function(errorMessage) {
+      spyOn($injector.get('$log'), 'error').and.callFake(function(errorMessage) {
         errorLog.push(errorMessage);
       });
     }));
@@ -122,14 +122,14 @@ describe('Learner parameters service', function() {
       learnerParamsService.init({'a': 'b'});
       expect(function() {
         learnerParamsService.getValue('b');
-      }).toThrow(new Error('Invalid parameter name: b'));
+      }).toThrowError('Invalid parameter name: b');
     });
 
     it('should not set an invalid parameter', function() {
       learnerParamsService.init({'a': 'b'});
       expect(function() {
         learnerParamsService.setValue('b', 'c');
-      }).toThrow(new Error('Cannot set unknown parameter: b'));
+      }).toThrowError('Cannot set unknown parameter: b');
     });
   });
 });

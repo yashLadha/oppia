@@ -97,7 +97,7 @@ describe('Datetime Formatter', function() {
 
       // Mock Date() to give a time of NOW_MILLIS in GMT. (Unfortunately, there
       // doesn't seem to be a good way to set the timezone locale directly.)
-      spyOn(window, 'Date').andCallFake(function(optionalMillisSinceEpoch) {
+      spyOn(window, 'Date').and.callFake(function(optionalMillisSinceEpoch) {
         if (optionalMillisSinceEpoch) {
           return new oldDate(optionalMillisSinceEpoch);
         } else {

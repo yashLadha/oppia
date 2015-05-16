@@ -54,13 +54,7 @@ if [ ! -d "$NODE_MODULE_DIR/karma-chrome-launcher" ]; then
   $NPM_INSTALL karma-chrome-launcher@0.1.4
 fi
 
-echo Checking whether karma-jasmine is installed in $TOOLS_DIR
-if [ ! -d "$NODE_MODULE_DIR/karma-jasmine" ]; then
-  echo Installing karma-jasmine
-  # Install karma as well, in case people have an older version.
-  $NPM_INSTALL karma@0.12.16
-  $NPM_INSTALL karma-jasmine@0.1.0
-fi
+$NPM_INSTALL karma-jasmine@0.2.3
 
 echo Checking whether karma-coverage is installed in $TOOLS_DIR
 if [ ! -d "$NODE_MODULE_DIR/karma-coverage" ]; then

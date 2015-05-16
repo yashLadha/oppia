@@ -66,7 +66,7 @@ oppia.factory('learnerParamsService', ['$log', function($log) {
     },
     getValue: function(paramName) {
       if (!_paramDict.hasOwnProperty(paramName)) {
-        throw 'Invalid parameter name: ' + paramName;
+        throw ReferenceError('Invalid parameter name: ' + paramName);
       } else {
         return angular.copy(_paramDict[paramName]);
       }
@@ -75,7 +75,7 @@ oppia.factory('learnerParamsService', ['$log', function($log) {
       // TODO(sll): Currently, all parameters are strings. In the future, we
       // will need to maintain information about parameter types.
       if (!_paramDict.hasOwnProperty(paramName)) {
-        throw 'Cannot set unknown parameter: ' + paramName;
+        throw ReferenceError('Cannot set unknown parameter: ' + paramName);
       } else {
         _paramDict[paramName] = String(newParamValue);
       }

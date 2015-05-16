@@ -80,7 +80,7 @@ describe('Signup controller', function() {
         'agree to the site terms.');
     });
 
-    it('should show warning if no username provided', function($http) {
+    it('should show warning if no username provided', function() {
       scope.updateWarningText('');
       expect(scope.warningText).toEqual('Please enter a username.');
 
@@ -88,20 +88,20 @@ describe('Signup controller', function() {
       expect(scope.warningText).toEqual('Please enter a username.');
     });
 
-    it('should show warning if username is too long', function($http) {
+    it('should show warning if username is too long', function() {
       scope.updateWarningText(
         'abcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihgfedcba');
       expect(scope.warningText).toEqual(
         'A username can have at most 50 characters.');
     });
 
-    it('should show warning if username has non-alphanumeric characters', function($http) {
+    it('should show warning if username has non-alphanumeric characters', function() {
       scope.updateWarningText('a-a');
       expect(scope.warningText).toEqual(
         'Usernames can only have alphanumeric characters.');
     });
 
-    it('should show warning if username has \'admin\' in it', function($http) {
+    it('should show warning if username has \'admin\' in it', function() {
       scope.updateWarningText('administrator');
       expect(scope.warningText).toEqual(
         'User names with \'admin\' are reserved.');

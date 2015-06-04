@@ -26,7 +26,7 @@ oppia.directive('realWithUnitEditor', function($compile, warningsData) {
     template: '<span ng-include="getTemplateUrl()"></span>',
     controller: function($scope) {
       $scope.schema = {
-        type: 'unicode'
+        type: 'dict'
       };
 
       if ($scope.$parent.value === '') {

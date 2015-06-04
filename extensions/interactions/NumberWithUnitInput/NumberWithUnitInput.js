@@ -50,7 +50,7 @@ oppia.directive('oppiaInteractiveNumberWithUnitInput', [function() {
           var parsedAnswer = numberWithUnitInputParser.parse(strippedAnswer);
           var processedAnswer = $scope.postprocess(answer, parsedAnswer);
 
-          $scope.$parent.$parent.submitAnswer(parsedAnswer, 'submit');
+          $scope.$parent.$parent.submitAnswer(processedAnswer, 'submit');
         }
       }
     }]

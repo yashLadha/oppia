@@ -159,7 +159,94 @@
         {% endif %}
       </div>
 
-      <div class="oppia-gallery-tiles-area">
+      <div class="oppia-gallery-tiles-area" ng-if="firstTime">
+        <div class="oppia-gallery-tiles-container">
+          <div class="oppia-gallery-tiles-introduction">
+            Explore our content areas
+          </div>
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <a ng-click="onClickContentAreaTile()" style="text-decoration: none;">
+                  <md-card layout="row" class="oppia-gallery-tile protractor-test-gallery-tile">
+                    Mathematics
+                  </md-card>
+                </a>
+                <br><br>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <md-card layout="row" class="oppia-gallery-tile protractor-test-gallery-tile">
+                  Physics
+                </md-card>
+                <br><br>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <md-card layout="row" class="oppia-gallery-tile protractor-test-gallery-tile">
+                  Geography
+                </md-card>
+                <br><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="oppia-gallery-tiles-introduction">
+            Learn something new today
+          </div>
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <a href="/explore/4" style="text-decoration: none;">
+                  <md-card layout="row" class="oppia-gallery-tile protractor-test-gallery-tile">
+                    Three Balls
+                  </md-card>
+                </a>
+                <br><br>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <md-card layout="row" class="oppia-gallery-tile protractor-test-gallery-tile">
+                  Floating-Point Errors
+                </md-card>
+                <br><br>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <md-card layout="row" class="oppia-gallery-tile protractor-test-gallery-tile">
+                  Introduction to the Piano
+                </md-card>
+                <br><br>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <md-card layout="row" class="oppia-gallery-tile protractor-test-gallery-tile">
+                  Linear Algebra
+                </md-card>
+                <br><br>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <md-card layout="row" class="oppia-gallery-tile protractor-test-gallery-tile">
+                  Resolving Disagreements
+                </md-card>
+                <br><br>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <md-card layout="row" class="oppia-gallery-tile protractor-test-gallery-tile">
+                  Exploring the Franco-Prussian War
+                </md-card>
+                <br><br>
+              </div>
+            </div>
+
+            <br><br>
+            <br><br>
+            <br><br>
+          </div>
+        </div>
+      </div>
+
+      <div class="oppia-gallery-tiles-area" ng-if="!firstTime">
         <div class="oppia-gallery-tiles-container">
           <div ng-if="allExplorationsInOrder.length === 0" class="oppia-gallery-tiles-introduction">
             <em>

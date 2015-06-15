@@ -126,6 +126,8 @@ oppia.controller('Gallery', [
       urlService, GALLERY_DATA_URL, CATEGORY_LIST, searchService,
       ratingVisibilityService) {
 
+  $scope.firstTime = true;
+
   $window.addEventListener('scroll', function() {
     var oppiaBanner = $('.oppia-gallery-banner-container');
     var oppiaTagline = $('.oppia-gallery-banner-tagline');
@@ -216,6 +218,15 @@ oppia.controller('Gallery', [
         $scope.pageLoaderIsBusy = false;
       });
     }
+  };
+
+  $scope.onClickContentAreaTile = function() {
+    $scope.firstTime = false;
+    searchService.executeSearchQuery(
+        '', {'mathematics': true}, {}, function() {
+      $scope.searchIsLoading = false;
+      $rootScope.$broadcast('hasChangedSearchQuery');
+    });
   };
 
   $scope.$on('refreshGalleryData', function(evt, data, hasPageFinishedLoading) {

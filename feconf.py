@@ -195,6 +195,7 @@ ALLOWED_INTERACTION_CATEGORIES = [{
     'interaction_ids': [
         'GraphInput',
         'LogicProof',
+        'NumberWithUnitInput',
         'NumericInput',
         'SetInput',
     ]

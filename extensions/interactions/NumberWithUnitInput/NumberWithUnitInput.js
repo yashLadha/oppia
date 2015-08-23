@@ -28,6 +28,7 @@ oppia.directive('oppiaInteractiveNumberWithUnitInput', [function() {
     templateUrl: 'interaction/NumberWithUnitInput',
     controller: ['$scope', '$attrs', function($scope, $attrs) {
       $scope.labelForFocusTarget = $attrs.labelForFocusTarget || null;
+      $scope.errorMessage = '';
 
       $scope.NUMBER_WITH_UNIT_INPUT_FORM_SCHEMA = {
         type: 'unicode',
@@ -35,7 +36,8 @@ oppia.directive('oppiaInteractiveNumberWithUnitInput', [function() {
       };
 
       $scope.preprocess = function(unprocessedAnswer) {
-        var preprocessedAnswer = unprocessedAnswer.replace(/\s/g, '').replace(",", "");
+        var preprocessedAnswer = unprocessedAnswer.replace(/\s/g, '').replace(
+          ',', '');
         return preprocessedAnswer;
       }
 
@@ -47,7 +49,18 @@ oppia.directive('oppiaInteractiveNumberWithUnitInput', [function() {
       $scope.submitAnswer = function(answer) {
         if (answer) {
           var strippedAnswer = $scope.preprocess(answer);
-          var parsedAnswer = numberWithUnitInputParser.parse(strippedAnswer);
+          try {
+            var parsedAnswer = numberWithUnitInputParser.parse(strippedAnswer);
+          } catch(error) {
+            if (error.message) {
+              $scope.errorMessage = error.message;
+              return;
+            } else {
+              $scope.errorMessage = 'Please enter a number with units.';
+              throw error;
+            }
+          }
+
           var processedAnswer = $scope.postprocess(answer, parsedAnswer);
 
           $scope.$parent.$parent.submitAnswer(processedAnswer, 'submit');
@@ -57,7 +70,8 @@ oppia.directive('oppiaInteractiveNumberWithUnitInput', [function() {
   }
 }]);
 
-oppia.directive('oppiaResponseNumberWithUnitInput', ['oppiaHtmlEscaper', function(oppiaHtmlEscaper) {
+oppia.directive('oppiaResponseNumberWithUnitInput', [
+    'oppiaHtmlEscaper', function(oppiaHtmlEscaper) {
   return {
     scope: {},
     templateUrl: 'response/NumberWithUnitInput',

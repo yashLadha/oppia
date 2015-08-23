@@ -142,6 +142,17 @@ oppia.directive('answerGroupEditor', [function() {
         case 'Filepath':
         case 'LogicErrorCategory':
           return '';
+        case 'RealWithUnit':
+          return {
+            raw: '0 km',
+            parsed: {
+              number: 0,
+              units: [{
+                exponent: 1,
+                unit: 'km'
+              }]
+            }
+          };
         case 'CodeEvaluation':
           return {
             'code': getDefaultInputValue('UnicodeString'),

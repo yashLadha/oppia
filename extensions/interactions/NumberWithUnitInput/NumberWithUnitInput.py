@@ -23,12 +23,11 @@ class NumberWithUnitInput(base.BaseInteraction):
     """Interaction for number with unit input."""
 
     name = 'Number with Unit'
-    category = 'Science'
     description = (
-    'Allows learners to enter integers and floating point numbers followed by standard units.')
+        'Allows learners to enter integers and floating point numbers '
+        'followed by standard units.')
     display_mode = base.DISPLAY_MODE_INLINE
-    dependency_ids = ['number_with_unit_input']
-    _handlers = [{
-    'name': 'submit', 'obj_type': 'RealWithUnit'}]
+    dependency_ids = ['number_with_unit_parser']
+    answer_type = 'RealWithUnit'
 
     _customization_arg_specs = []

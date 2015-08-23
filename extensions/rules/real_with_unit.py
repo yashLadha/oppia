@@ -27,5 +27,3 @@ class Equals(base.RealWithUnitRule):
 
     def _evaluate(self, subject):
         return subject["parsed"] == self.x["parsed"]
-
-

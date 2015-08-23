@@ -1,2 +1,8 @@
-<schema-based-editor schema="schema" local-value="$parent.$parent.value">
-</schema-based-editor>
+<div>
+  <input type="text" ng-model="rawValue" ng-trim="false" placeholder="0 km^2" id="someId"
+         ng-change="clearErrorMessage()"
+         ng-blur="createRealWithUnitObject(rawValue)">
+  <span style="color: red;" ng-if="errorMessage">
+    Error: <[errorMessage]>
+  </span>
+</div>

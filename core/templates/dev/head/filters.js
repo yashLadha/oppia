@@ -193,6 +193,8 @@ oppia.filter('parameterizeRuleDescription', ['INTERACTION_SPECS', function(INTER
         replacementText = '"' + inputs[varName] + '"';
       } else if (varType === 'Graph') {
         replacementText = '[reference graph]';
+      } else if (varType === 'RealWithUnit') {
+        replacementText = inputs[varName].raw;
       } else {
         replacementText = inputs[varName];
       }

@@ -1,3 +1,4 @@
+// Copyright 2015 The Oppia Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,9 +17,10 @@
  * the interaction.
  */
 
-// Figure out validator next!
-oppia.filter('oppiaInteractiveNumberWithUnitInputValidator', ['$filter', 'WARNING_TYPES', function($filter, WARNING_TYPES) {
-    var warningsList = [];
-
-    return warningsList;
+oppia.filter('oppiaInteractiveNumberWithUnitInputValidator', [
+    'baseInteractionValidationService', function(baseInteractionValidationService) {
+  return function(stateName, customizationArgs, answerGroups, defaultOutcome) {
+    return baseInteractionValidationService.getAllOutcomeWarnings(
+      answerGroups, defaultOutcome, stateName);
+  };
 }]);

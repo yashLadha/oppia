@@ -25,12 +25,43 @@ oppia.directive('realWithUnitEditor', function($compile, warningsData) {
     scope: true,
     template: '<span ng-include="getTemplateUrl()"></span>',
     controller: function($scope) {
-      $scope.schema = {
-        type: 'dict'
+      $scope.errorMessage = '';
+
+      $scope.clearErrorMessage = function() {
+        $scope.errorMessage = '';
+      };
+
+      $scope.createRealWithUnitObject = function(rawValue) {
+        try {
+          // TODO(sll): Do the whitespace removal in the parser instead.
+          var parsedValue = numberWithUnitInputParser.parse(
+            rawValue.replace(/ /g, ''));
+        } catch(error) {
+          if (error.message) {
+            $scope.errorMessage = error.message;
+          } else {
+            $scope.errorMessage = (
+              'Could not understand this input. Please enter a number with ' +
+              'units.');
+            throw error;
+          }
+          return;
+        }
+
+        $scope.$parent.value = {
+          raw: rawValue,
+          parsed: parsedValue
+        };
       };
 
       if ($scope.$parent.value === '') {
-        $scope.$parent.value = "0 km^2";
+        $scope.$parent.value = {
+          number: 0,
+          units: [{
+            unit: 'km',
+            exponent: 2
+          }]
+        };
       }
     }
   };

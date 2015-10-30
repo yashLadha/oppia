@@ -126,7 +126,7 @@ html, body {
   /* This is the width of the main card, plus the width of the supplemental
      card, plus a 12px margin between them.
   */
-  max-width: 1184px;
+  max-width: 1420px;
 }
 
 .conversation-skin-main-tutor-card,
@@ -302,7 +302,7 @@ html, body {
 
 .conversation-skin-right-card-container {
   margin-left: 12px;
-  width: 700px;
+  width: 1040px;
 }
 
 div.conversation-skin-supplemental-card {
@@ -314,7 +314,7 @@ div.conversation-skin-supplemental-card {
   padding: 8px;
   position: absolute;
   right: 0;
-  width: 700px;
+  width: 1040px;
 }
 
 .conversation-skin-right-card-container div.conversation-skin-supplemental-card-fixed {
@@ -344,6 +344,12 @@ div.conversation-skin-supplemental-card {
   float: left;
   margin-left: 0;
   margin-right: 16px;
+  width: 360px;
+}
+
+.conversation-skin-left-card .conversation-skin-oppia-avatar,
+.conversation-skin-left-card .conversation-skin-user-avatar {
+  display: none;
 }
 
 .conversation-skin-card-switcher {

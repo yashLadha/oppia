@@ -343,7 +343,7 @@ div.conversation-skin-supplemental-card {
 .conversation-skin-left-card {
   float: left;
   margin-left: 0;
-  margin-right: 16px;
+  margin-right: 0;
   width: 360px;
 }
 

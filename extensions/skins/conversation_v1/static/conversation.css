@@ -131,17 +131,10 @@ html, body {
 
 .conversation-skin-help-card-container {
   position: fixed;
-  z-index: 500;
-}
-.conversation-skin-help-card-container-top-right {
   right: 30px;
   top: 80px;
+  z-index: 500;
 }
-.conversation-skin-help-card-container-centered {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}  
 .conversation-skin-help-card {
   background: #fff;
   border-radius: 2px;

@@ -30,8 +30,7 @@
                    ng-class="{'conversation-skin-progress-dots-iframed': isIframed, 'conversation-skin-progress-dots-not-iframed': !isIframed}">
     </progress-dots>
 
-    <div ng-if="helpHtml"
-         class="conversation-skin-help-card-container conversation-skin-help-card-container-top-right">
+    <div ng-if="helpHtml" class="conversation-skin-help-card-container">
       <div class="conversation-skin-help-card">
         <img class="conversation-skin-oppia-avatar"
              ng-src="<[oppiaAvatarImageUrl]>" alt="" style="top: 12px;">
@@ -44,8 +43,7 @@
       </div>
     </div>
 
-    <div ng-if="continueToNextCardHtml"
-         class="conversation-skin-help-card-container conversation-skin-help-card-container-centered">
+    <div ng-if="continueToNextCardHtml" class="conversation-skin-help-card-container">
       <div class="conversation-skin-help-card">
         <img class="conversation-skin-oppia-avatar"
              ng-src="<[oppiaAvatarImageUrl]>" alt="" style="top: 12px;">

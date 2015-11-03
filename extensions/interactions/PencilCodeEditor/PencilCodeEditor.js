@@ -34,6 +34,7 @@ oppia.directive('oppiaInteractivePencilCodeEditor', [
         var pce = new PencilCodeEmbed($element[0].children[0]);
         pce.beginLoad($scope.initialCode);
         pce.on('load', function() {
+          console.log("loaded?");
           // Hide the turtle, and redefine say() to also write the text on the
           // screen.
           pce.setupScript([{

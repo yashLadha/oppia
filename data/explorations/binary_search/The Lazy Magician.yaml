@@ -11,7 +11,7 @@ param_changes:
   name: redux
 param_specs:
   MagicianNumber:
-    obj_type: UnicodeString
+    obj_type: Real
   OptimalityProxy:
     obj_type: UnicodeString
   comparison:
@@ -39,7 +39,7 @@ param_specs:
   precomputeLowest:
     obj_type: UnicodeString
   previousNumber:
-    obj_type: UnicodeString
+    obj_type: Real
   rangeSize:
     obj_type: UnicodeString
   redux:
@@ -1086,16 +1086,16 @@ states:
     param_changes:
     - customization_args:
         list_of_values:
-        - '5'
-        - '16'
-        - '30'
-        - '38'
-        - '47'
-        - '55'
-        - '66'
-        - '80'
-        - '83'
-        - '97'
+        - 5
+        - 16
+        - 30
+        - 38
+        - 47
+        - 55
+        - 66
+        - 80
+        - 83
+        - 97
       generator_id: RandomSelector
       name: MagicianNumber
     - customization_args:
@@ -1483,15 +1483,15 @@ states:
     param_changes:
     - customization_args:
         list_of_values:
-        - '27'
-        - '485'
-        - '692'
-        - '950'
-        - '378'
-        - '93'
-        - '858'
-        - '203'
-        - '869'
+        - 27
+        - 485
+        - 692
+        - 950
+        - 378
+        - 93
+        - 858
+        - 203
+        - 869
       generator_id: RandomSelector
       name: previousNumber
     - customization_args:

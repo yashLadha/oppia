@@ -17,8 +17,8 @@
  */
 
 oppia.factory('answerClassificationService', [
-  '$http', '$q', 'LearnerParamsService',
-  function($http, $q, LearnerParamsService) {
+  '$http', '$q', 'LearnerParamsService', 'expressionEvaluatorService',
+  function($http, $q, LearnerParamsService, expressionEvaluatorService) {
     /**
      * Finds the first answer group with a rule that returns true. This should
      * be synced with the backend classify() function in
@@ -42,12 +42,31 @@ oppia.factory('answerClassificationService', [
      */
     var classifyAnswer = function(
         answer, answerGroups, defaultOutcome, interactionRulesService) {
-      // Find the first group that contains a rule which returns true
+      // Find the first group that contains a rule which returns true.
       for (var i = 0; i < answerGroups.length; i++) {
         for (var j = 0; j < answerGroups[i].rule_specs.length; j++) {
           var ruleSpec = answerGroups[i].rule_specs[j];
+
+          var interpolatedRuleSpecInputs = angular.copy(ruleSpec.inputs);
+          for (var inputName in interpolatedRuleSpecInputs) {
+            var inputValue = interpolatedRuleSpecInputs[inputName];
+            if (angular.isString(inputValue) &&
+                inputValue.indexOf('{{') === 0 &&
+                inputValue.lastIndexOf('}}') + 2 === inputValue.length) {
+              // This indicates that the rule input value is actually an
+              // expression that needs to be evaluated.
+              interpolatedRuleSpecInputs[inputName] = (
+                expressionEvaluatorService.evaluateExpression(
+                  inputValue.substring(2, inputValue.length - 2),
+                  [LearnerParamsService.getAllParams()]));
+            }
+          }
+
+          // TODO(sll): Add a check here that each of the rule parameter input
+          // values has the correct type.
+
           if (interactionRulesService[ruleSpec.rule_type](
-              answer, ruleSpec.inputs)) {
+              answer, interpolatedRuleSpecInputs)) {
             return {
               outcome: answerGroups[i].outcome,
               answerGroupIndex: i,

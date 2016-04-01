@@ -47,10 +47,10 @@ class ParamSpec(object):
         # TODO(bhenning): Expand parameter support in the editor to multiple
         # types, then validate all changes and rule inputs to properly match the
         # type of the parameter.
-        if self.obj_type != 'UnicodeString':
+        if self.obj_type not in ['UnicodeString', 'Real']:
             raise utils.ValidationError(
-                'Only \'UnicodeString\' is the supported object type for '
-                'parameters, not: %s' % self.obj_type)
+                'Only \'UnicodeString\' and \'Real\' are supported object '
+                'types for parameters, not: %s' % self.obj_type)
 
 
 class ParamChange(object):

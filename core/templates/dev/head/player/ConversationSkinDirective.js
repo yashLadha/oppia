@@ -502,6 +502,13 @@ oppia.directive('conversationSkin', [function() {
                   }
                   focusService.setFocusIfOnDesktop(_nextFocusLabel);
                   scrollToBottom();
+
+                  // Parameters are recomputed on re-entry to the card. (Note
+                  // that this is required in order for the binary search
+                  // exploration to work.)
+                  if (newParams) {
+                    LearnerParamsService.init(newParams);
+                  }
                 } else {
                   // There is a new card. If there is no feedback, move on
                   // immediately. Otherwise, give the learner a chance to read

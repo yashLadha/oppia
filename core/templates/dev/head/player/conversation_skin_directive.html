@@ -167,7 +167,15 @@
               </md-button>
             </div>
 
-            <div ng-if="!exploration.isInteractionInline(activeCard.stateName)">
+            <!--
+              The loadSupplement and the forced height of 550px above are here to
+              ensure that the supplemental card loads fully before the Pencil Code
+              interaction starts loading. Otherwise, the transition is very janky.
+
+              TODO(sll): This is a custom hack for Pencil Code. If it becomes a
+              more general thing, we need to find another way to do it.
+            -->
+            <div ng-if="!exploration.isInteractionInline(activeCard.stateName) && loadSupplement">
               <div class="protractor-test-conversation-input"
                    angular-html-bind="activeCard.interactionHtml">
               </div>
@@ -190,21 +198,6 @@
                       class="conversation-skin-bottom-gadget-panel"
                       current-state-name="activeCard.stateName">
   </oppia-gadget-panel>
-
-  <div ng-if="isOnTerminalCard() && isLoggedIn && !isInPreviewMode && !isIframed && isCurrentCardAtEndOfTranscript()"
-       class="conversation-skin-final-ratings">
-
-    <div style="color: #eee; margin-bottom: 20px;">
-      Learned something new? How would you rate this exploration?
-    </div>
-    <div popover-placement="bottom" popover-template="'popover/feedback'" popover-trigger="click">
-      <rating-display rating-value="userRating"
-                      is-editable="true"
-                      on-edit="submitUserRating"
-                      style="letter-spacing: 10px; color: #eee;">
-      </rating-display>
-    </div>
-  </div>
 
   <div ng-if="isOnTerminalCard() && !isIframed && isCurrentCardAtEndOfTranscript() && recommendedExplorationSummaries.length > 0"
        class="conversation-skin-final-recommendations">
@@ -356,7 +349,10 @@
       /* This is the width of the main card, plus the width of the supplemental
          card, plus a 12px margin between them.
       */
-      max-width: 1084px;
+      max-width: 1420px;
+      padding-left: 6px;
+      padding-right: 6px;
+      position: relative;
     }
 
     .conversation-skin-help-card {
@@ -420,7 +416,7 @@
       float: left;
       margin-left: 0;
       margin-right: 0;
-      width: 472px;
+      width: 360px;
     }
 
     .conversation-skin-main-tutor-card.animate-card-width {
@@ -598,8 +594,8 @@
     }
 
     .conversation-skin-right-card-container {
-      margin-left: 6px;
-      width: 600px;
+      margin-left: 12px;
+      width: calc(100% - 380px);
     }
 
     div.conversation-skin-supplemental-card {
@@ -607,7 +603,6 @@
       margin: 44px auto 60px auto;
       position: relative;
       right: 0;
-      width: 600px;
     }
 
     .conversation-skin-supplemental-interaction-container {

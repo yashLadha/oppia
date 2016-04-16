@@ -337,7 +337,8 @@ DEMO_EXPLORATIONS = {
 }
 
 DEMO_COLLECTIONS = {
-    u'0': 'welcome_to_collections.yaml'
+    u'0': 'welcome_to_collections.yaml',
+    u'1': 'carla.yaml',
 }
 
 # TODO(sll): Add all other URLs here.

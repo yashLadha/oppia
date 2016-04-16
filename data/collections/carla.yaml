@@ -1,0 +1,36 @@
+category: Programming
+nodes:
+- acquired_skills:
+  - Write statements
+  exploration_id: 'ojdVhDF3SmyD'
+  prerequisite_skills: []
+- acquired_skills:
+  - Variables 1
+  exploration_id: 'zN0DSXf3aGDE'
+  prerequisite_skills:
+  - Write statements
+- acquired_skills:
+  - Variables 2
+  exploration_id: 'mCkGrzdiOv1y'
+  prerequisite_skills:
+  - Write statements
+- acquired_skills: []
+  exploration_id: '.n8ct5R2M5TTx'
+  prerequisite_skills:
+  - Variables 1
+  - Variables 2
+- acquired_skills:
+  - Conditionals 1
+  exploration_id: 'oKguvdSoVcmZ'
+  prerequisite_skills:
+  - Variables 1
+  - Variables 2
+- acquired_skills:
+  - Conditionals 2
+  exploration_id: 'ldRdwLAHzA-M'
+  prerequisite_skills:
+  - Variables 1
+  - Variables 2
+objective: Learn how to code!
+schema_version: 1
+title: Programming with Carla

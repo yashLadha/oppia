@@ -15,6 +15,7 @@
 """Controllers for the user dashboard and for notifications."""
 
 from core.controllers import base
+from core.controllers import galleries
 from core.domain import config_domain
 from core.domain import exp_services
 from core.domain import feedback_services
@@ -111,7 +112,9 @@ class MyExplorationsPage(base.BaseHandler):
                 'nav_mode': feconf.NAV_MODE_HOME,
                 'can_create_collections': (
                     self.username in
-                    config_domain.WHITELISTED_COLLECTION_EDITOR_USERNAMES.value)
+                    config_domain.WHITELISTED_COLLECTION_EDITOR_USERNAMES.value),
+                'allow_yaml_file_upload': (
+                    galleries.ALLOW_YAML_FILE_UPLOAD.value),
             })
             self.render_template(
                 'dashboard/my_explorations.html', redirect_url_on_logout='/')

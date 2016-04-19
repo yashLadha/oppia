@@ -2,32 +2,32 @@ category: Programming
 nodes:
 - acquired_skills:
   - Write statements
-  exploration_id: 'ojdVhDF3SmyD'
+  exploration_id: 'maLdDY-kXS6-'
   prerequisite_skills: []
 - acquired_skills:
   - Variables 1
-  exploration_id: 'zN0DSXf3aGDE'
+  exploration_id: '5AjYmuhcmgtt'
   prerequisite_skills:
   - Write statements
 - acquired_skills:
   - Variables 2
-  exploration_id: 'mCkGrzdiOv1y'
+  exploration_id: 'uX9jzbMtu675'
   prerequisite_skills:
   - Write statements
 - acquired_skills: []
-  exploration_id: '.n8ct5R2M5TTx'
+  exploration_id: 'yy1OPmMdRvZZ'
   prerequisite_skills:
   - Variables 1
   - Variables 2
 - acquired_skills:
   - Conditionals 1
-  exploration_id: 'oKguvdSoVcmZ'
+  exploration_id: 'OwNfjoxrFBck'
   prerequisite_skills:
   - Variables 1
   - Variables 2
 - acquired_skills:
   - Conditionals 2
-  exploration_id: 'ldRdwLAHzA-M'
+  exploration_id: 'A3Mnu7Hlfbnf'
   prerequisite_skills:
   - Variables 1
   - Variables 2

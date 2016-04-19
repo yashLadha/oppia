@@ -42,22 +42,6 @@
           <[getObjective() | truncateAndCapitalize: 50]>
           <span ng-if="!getObjective()">No objective specified.</span>
         </div>
-        <ul layout="row" class="metrics" layout-align="space-between center">
-          <li>
-            <span class="fa fa-eye fa-lg" tooltip="Views" tooltip-placement="top">
-            </span>
-            <[getNumViews() | summarizeNonnegativeNumber]>
-          </li>
-
-          <li>
-            <span ng-if="!wasRecentlyUpdated()">
-              <[getLastUpdatedDatetime()]>
-            </span>
-            <span ng-if="wasRecentlyUpdated()" class="recently-updated">
-              UPDATED
-            </span>
-          </li>
-        </ul>
       </div>
     </a>
   </md-card>
@@ -68,7 +52,7 @@
     background-color: #fff;
     cursor: pointer;
     display: inline-block;
-    height: 240px;
+    height: 228px;
     margin: 12px 4px;
     padding: 0;
     position: relative;

@@ -288,7 +288,12 @@ class BaseHandler(webapp2.RequestHandler):
                 self.user_id, email)
             self.values['user_email'] = user_settings.email
 
-            if (self.REDIRECT_UNFINISHED_SIGNUPS and not
+            if (not rights_manager.Actor(self.user_id).is_moderator() and
+                    not current_user_services.is_current_user_super_admin()):
+                _clear_login_cookies(self.response.headers)
+                self.partially_logged_in = True
+                self.user_id = None
+            elif (self.REDIRECT_UNFINISHED_SIGNUPS and not
                     user_services.has_fully_registered(self.user_id)):
                 _clear_login_cookies(self.response.headers)
                 self.partially_logged_in = True

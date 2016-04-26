@@ -294,7 +294,7 @@ class BaseHandler(webapp2.RequestHandler):
                 self.partially_logged_in = True
                 self.user_id = None
             elif (self.REDIRECT_UNFINISHED_SIGNUPS and not
-                    user_services.has_fully_registered(self.user_id)):
+                  user_services.has_fully_registered(self.user_id)):
                 _clear_login_cookies(self.response.headers)
                 self.partially_logged_in = True
                 self.user_id = None

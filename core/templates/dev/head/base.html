@@ -127,57 +127,59 @@
                     </a>
                   </div>
 
-                  {% if username and nav_mode != 'signup' %}
+                  {% if nav_mode != 'signup' %}
                     <div ng-cloak class="navbar-header pull-right">
                       <ul class="nav oppia-navbar-nav oppia-navbar-profile">
-                        <li class="dropdown pull-right">
-                          <a class="dropdown-toggle oppia-navbar-dropdown-toggle" data-toggle="dropdown" ng-mouseover="onMouseoverProfilePictureOrDropdown($event)" ng-mouseleave="onMouseoutProfilePictureOrDropdown($event)">
-                            <div class="oppia-navbar-profile-picture-container" ng-cloak>
-                              {% if profile_picture_data_url %}
-                                <img src="{{profile_picture_data_url}}" class="oppia-navbar-profile-picture img-circle">
-                                <span class="caret" style="margin-top: 10px;"></span>
-                              {% else %}
-                                <i class="material-icons md-40" style="margin-top: -1px;">&#xE853;</i>
-                                <span class="caret" style="margin-top: -26px;"></span>
-                              {% endif %}
+                        {% if username %}
+                          <li class="dropdown pull-right">
+                            <a class="dropdown-toggle oppia-navbar-dropdown-toggle" data-toggle="dropdown" ng-mouseover="onMouseoverProfilePictureOrDropdown($event)" ng-mouseleave="onMouseoutProfilePictureOrDropdown($event)">
+                              <div class="oppia-navbar-profile-picture-container" ng-cloak>
+                                {% if profile_picture_data_url %}
+                                  <img src="{{profile_picture_data_url}}" class="oppia-navbar-profile-picture img-circle">
+                                  <span class="caret" style="margin-top: 10px;"></span>
+                                {% else %}
+                                  <i class="material-icons md-40" style="margin-top: -1px;">&#xE853;</i>
+                                  <span class="caret" style="margin-top: -26px;"></span>
+                                {% endif %}
 
-                              <div class="oppia-navbar-dashboard-indicator ng-cloak" ng-if="numUnseenNotifications > 0">
-                                <span class="oppia-navbar-dashboard-indicator-text">
-                                  <[numUnseenNotifications]>
-                                </span>
+                                <div class="oppia-navbar-dashboard-indicator ng-cloak" ng-if="numUnseenNotifications > 0">
+                                  <span class="oppia-navbar-dashboard-indicator-text">
+                                    <[numUnseenNotifications]>
+                                  </span>
+                                </div>
                               </div>
-                            </div>
-                          </a>
-                          <ul class="dropdown-menu ng-cloak oppia-navbar-dropdown" role="menu" ng-mouseover="onMouseoverProfilePictureOrDropdown($event)" ng-mouseleave="onMouseoutProfilePictureOrDropdown($event)" ng-show="profileDropdownIsActive">
-                            <li>
-                              <a ng-click="onMouseoutProfilePictureOrDropdown($event)" href="/profile/{{username}}">
-                                <strong>{{username}}</strong>
-                              </a>
-                            </li>
-                            <hr class="oppia-top-right-menu-item-separator">
-                            <li>
-                              <a ng-click="onMouseoutProfilePictureOrDropdown($event)" href="/my_explorations">
-                                My Explorations
-                              </a>
-                            </li>
-                            <li>
-                              <a ng-click="onMouseoutProfilePictureOrDropdown($event)" href="/notifications_dashboard">
-                                Notifications
-                                <span ng-if="numUnseenNotifications > 0">
-                                  (<[numUnseenNotifications]>)
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a ng-click="onMouseoutProfilePictureOrDropdown($event)" href="/preferences">Preferences</a>
-                            </li>
+                            </a>
+                            <ul class="dropdown-menu ng-cloak oppia-navbar-dropdown" role="menu" ng-mouseover="onMouseoverProfilePictureOrDropdown($event)" ng-mouseleave="onMouseoutProfilePictureOrDropdown($event)" ng-show="profileDropdownIsActive">
+                              <li>
+                                <a ng-click="onMouseoutProfilePictureOrDropdown($event)" href="/profile/{{username}}">
+                                  <strong>{{username}}</strong>
+                                </a>
+                              </li>
+                              <hr class="oppia-top-right-menu-item-separator">
+                              <li>
+                                <a ng-click="onMouseoutProfilePictureOrDropdown($event)" href="/my_explorations">
+                                  My Explorations
+                                </a>
+                              </li>
+                              <li>
+                                <a ng-click="onMouseoutProfilePictureOrDropdown($event)" href="/notifications_dashboard">
+                                  Notifications
+                                  <span ng-if="numUnseenNotifications > 0">
+                                    (<[numUnseenNotifications]>)
+                                  </span>
+                                </a>
+                              </li>
+                              <li>
+                                <a ng-click="onMouseoutProfilePictureOrDropdown($event)" href="/preferences">Preferences</a>
+                              </li>
 
-                            <hr class="oppia-top-right-menu-item-separator">
-                            <li>
-                              <a ng-click="onMouseoutProfilePictureOrDropdown($event)" href="{{logout_url}}">Logout</a>
-                            </li>
-                          </ul>
-                        </li>
+                              <hr class="oppia-top-right-menu-item-separator">
+                              <li>
+                                <a ng-click="onMouseoutProfilePictureOrDropdown($event)" href="{{logout_url}}">Logout</a>
+                              </li>
+                            </ul>
+                          </li>
+                        {% endif %}
                       </ul>
                     </div>
                   {% endif %}

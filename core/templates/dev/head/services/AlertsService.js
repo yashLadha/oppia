@@ -86,18 +86,20 @@ oppia.factory('AlertsService', ['$log', function($log) {
     AlertsService.warnings = [];
   };
 
-  /**
-   * Adds a message, can be info messages or success messages.
-   * @param {string} type - Type of message
-   * @param {string} message - Message content
-   */
-  AlertsService.addMessage = function(type, message) {
+    /**
+     * Adds a message, can be info messages or success messages.
+     * @param {string} type - Type of message
+     * @param {string} message - Message content
+     * @param timeout - Timeout value
+     */
+  AlertsService.addMessage = function(type, message, timeout) {
     if (AlertsService.messages.length >= MAX_TOTAL_MESSAGES) {
       return;
     }
     AlertsService.messages.push({
       type: type,
-      content: message
+      content: message,
+      timeout: timeout
     });
   };
 
@@ -117,20 +119,28 @@ oppia.factory('AlertsService', ['$log', function($log) {
     AlertsService.messages = newMessages;
   };
 
-  /**
-   * Adds an info message.
-   * @param {string} message - Info message to display.
-   */
-  AlertsService.addInfoMessage = function(message) {
-    AlertsService.addMessage('info', message);
+    /**
+     * Adds an info message.
+     * @param {string} message - Info message to display.
+     * @param timeout - Timeout for the information toast.
+     */
+  AlertsService.addInfoMessage = function(message, timeout) {
+    if (timeout === undefined) {
+      timeout = 1500;
+    }
+    AlertsService.addMessage('info', message, timeout);
   };
 
-  /**
-   * Adds a success message.
-   * @param {string} message - Success message to display
-   */
-  AlertsService.addSuccessMessage = function(message) {
-    AlertsService.addMessage('success', message);
+    /**
+     * Adds a success message.
+     * @param {string} message - Success message to display
+     * @param timeout - Timeout value for the success toast.
+     */
+  AlertsService.addSuccessMessage = function(message, timeout) {
+    if (timeout === undefined) {
+      timeout = 1500;
+    }
+    AlertsService.addMessage('success', message, timeout);
   };
 
   /**

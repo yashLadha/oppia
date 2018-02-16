@@ -33,14 +33,20 @@ oppia.directive('alertMessage', [function() {
     ],
     link: function(scope) {
       var message = scope.getMessage();
+      var generalTimeout = 1500;
       if (message.type === 'info') {
+        if (message.timeout !== generalTimeout) {
+          generalTimeout = message.timeout;
+        }
         scope.toastr.info(message.content, {
+          timeout: generalTimeout,
           onHidden: function() {
             scope.AlertsService.deleteMessage(message);
           }
         });
       } else if (message.type === 'success') {
         scope.toastr.success(message.content, {
+          timeout: generalTimeout,
           onHidden: function() {
             scope.AlertsService.deleteMessage(message);
           }
